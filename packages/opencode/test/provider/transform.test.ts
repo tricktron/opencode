@@ -843,6 +843,17 @@ describe("ProviderTransform.providerOptions", () => {
     })
   })
 
+  test("forwards options for custom openai-compatible providers", () => {
+    const model = createModel({
+      providerID: "my-deepseek",
+      api: { id: "deepseek-v4-flash", url: "https://api.test.com", npm: "@ai-sdk/openai-compatible" },
+    })
+
+    const result = ProviderTransform.providerOptions(model, { reasoning_effort: "max" })
+    expect(result).toEqual({ openaiCompatible: { reasoning_effort: "max" } })
+    expect(result).not.toHaveProperty("my-deepseek")
+  })
+
   test("forces reasoning for explicit effort even when model is not marked reasoning-capable", () => {
     const model = createModel({
       capabilities: {

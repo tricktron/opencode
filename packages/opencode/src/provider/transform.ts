@@ -86,6 +86,7 @@ function sdkKey(npm: string): string | undefined {
       return "openrouter"
     case "merge-gateway-ai-sdk-provider":
       return "mergeGateway"
+    case "@ai-sdk/openai-compatible":
     case "ai-gateway-provider":
       // ai-gateway-provider/unified wraps createOpenAICompatible({ name: "Unified" }),
       // and @ai-sdk/openai-compatible parses compatibleOptions from one of
